@@ -1,0 +1,2 @@
+include ':app', ':db2objectlib'
+rootProject.name='Db2ObjectLib'
