@@ -2,6 +2,7 @@ package com.magic_chen_.db2objectlib.db;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.util.Collections;
@@ -15,6 +16,7 @@ public class BaseDaoFactory {
     private SQLiteDatabase mSqliteDataBase;
 
     private String sqliteDataBasePath;
+    public static final String TAG = "BaseDaoFactory";
 
     public static BaseDaoFactory getInstance() {
         return mInstance;
@@ -27,7 +29,12 @@ public class BaseDaoFactory {
         if (!file.exists()) {
             file.mkdirs();
         }
+        String path = file.getAbsolutePath();
+        Log.e(TAG, "BaseDaoFactory: .  path:"+path);
         sqliteDataBasePath = file.getAbsolutePath() + "/user.db";
+
+        Log.e(TAG, "BaseDaoFactory: .  file exist::"+file.exists());
+
         mSqliteDataBase = SQLiteDatabase.openOrCreateDatabase(sqliteDataBasePath, null);
     }
 

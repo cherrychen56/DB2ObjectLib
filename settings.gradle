@@ -1,2 +1,2 @@
-include ':app', ':db2objectlib'
+include ':app', ':db2obj_lib'
 rootProject.name='Db2ObjectLib'

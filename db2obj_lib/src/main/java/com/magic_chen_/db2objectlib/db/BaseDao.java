@@ -101,7 +101,12 @@ public class BaseDao<T> implements IBaseDao<T> {
                 if (type == String.class) {
                     stringBuffer.append(field.getAnnotation(DbField.class).value() + " TEXT,");
                 } else if (type == Integer.class) {
-                    stringBuffer.append(field.getAnnotation(DbField.class).value() + " INTEGER,");
+                    if(field.getAnnotation(DbField.class).value().equals("id")){
+                        stringBuffer.append(field.getAnnotation(DbField.class).value() + " INTEGER PRIMARY KEY AUTOINCREMENT,");
+                    }else {
+                        stringBuffer.append(field.getAnnotation(DbField.class).value() + " INTEGER,");
+                    }
+
                 } else if (type == Long.class) {
                     stringBuffer.append(field.getAnnotation(DbField.class).value() + " BIGINT,");
                 } else if (type == Double.class) {
@@ -115,7 +120,11 @@ public class BaseDao<T> implements IBaseDao<T> {
                 if (type == String.class) {
                     stringBuffer.append(field.getName() + " TEXT,");
                 } else if (type == Integer.class) {
-                    stringBuffer.append(field.getName() + " INTEGER,");
+                    if(field.getName().equals("id")){
+                        stringBuffer.append(field.getName() + " INTEGER PRIMARY KEY AUTOINCREMENT,");
+                    }else {
+                        stringBuffer.append(field.getName() + " INTEGER,");
+                    }
                 } else if (type == Long.class) {
                     stringBuffer.append(field.getName() + " BIGINT,");
                 } else if (type == Double.class) {
